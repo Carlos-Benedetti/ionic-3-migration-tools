@@ -8,11 +8,16 @@
             "type": "pwa-node",
             "request": "launch",
             "name": "Launch Program",
+            "runtimeArgs": [
+                "-r",
+                "${workspaceFolder}/node_modules/ts-node/register",
+                "-r",
+                "${workspaceFolder}/node_modules/tsconfig-paths/register"
+            ],
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\src\\findRef.ts",
-            "preLaunchTask": "tsc: build - tsconfig.json",
+            "program": "${workspaceFolder}/src/index.ts",
             "outFiles": [
                 "${workspaceFolder}/dist/**/*.js"
             ]
