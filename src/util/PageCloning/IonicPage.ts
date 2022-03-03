@@ -42,12 +42,11 @@ export class IonicPage {
 
         globalThis.console.log = ()=>{}
         try {
-            await new Promise(r => setTimeout(r, 1000))
-            // const pargv = ['generate', 'page', this.fullPath]
+            const pargv = ['generate', 'page', this.fullPath]
 
-            // const executor = await ionic.loadExecutor(await ionic.generateContext(), pargv)
-            // const location = await executor.locate(pargv)
-            // await executor.execute(location, process.env)
+            const executor = await ionic.loadExecutor(await ionic.generateContext(), pargv)
+            const location = await executor.locate(pargv)
+            await executor.execute(location, process.env)
         }catch(error){
             throw new Error('fail to create page');
             

@@ -22,7 +22,7 @@ switch (true) {
             const updateLog = pages.map((v) => v.pageName)
 
             function log() {
-                process.stdout.write("\u001b[3J\u001b[2J\u001b[1J");console.clear();
+                process.stdout.write("\u001b[3J\u001b[2J\u001b[1J"); console.clear();
                 process.stdout.write(updateLog.join('\n'))
             }
             log()
@@ -36,9 +36,13 @@ switch (true) {
                     x &= 3;
                 }, 250);
 
-                await page.generate()
+                const status = await page.generate()
                 clearInterval(spinnerInt);
-                updateLog[index] = `${page.pageName} \x1b[32m ✔️ \x1b[0m`;
+                if (status) {
+                    updateLog[index] = `${page.pageName} \x1b[32m ✔️ \x1b[0m`;
+                }else{
+                    updateLog[index] = `${page.pageName} ❌ \x1b[0m`;
+                }
                 log()
             }
             log()

@@ -4,7 +4,7 @@ import { IonicPage } from './IonicPage';
 export class IonicModal extends IonicPage {
     public async generate(): Promise<boolean> {
         try {
-            await this.generateModule();
+            // await this.generateModule();
             await this.generateModal();
             return true
         } catch (error) {
@@ -30,12 +30,12 @@ export class IonicModal extends IonicPage {
         }
     }
     protected async generateModal(): Promise<void> {
-        const logBackup = globalThis.console.log
+        // const logBackup = globalThis.console.log
 
-        globalThis.console.log = ()=>{}
+        // globalThis.console.log = ()=>{}
         try {
             await new Promise(r => setTimeout(r, 1000))
-            const pargv = ['generate', 'component', this.fullPath , `--module=${this.formatedPageName}.module.ts`]
+            const pargv = ['generate', 'component', this.fullPath , `-m app`]
             const executor = await ionic.loadExecutor(await ionic.generateContext(), pargv)
             const location = await executor.locate(pargv)
             await executor.execute(location, process.env)
@@ -44,7 +44,7 @@ export class IonicModal extends IonicPage {
             
         }
         finally{
-            globalThis.console.log = logBackup
+            // globalThis.console.log = logBackup
         }
     }
     
