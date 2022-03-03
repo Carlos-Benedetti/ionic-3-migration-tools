@@ -9,8 +9,13 @@
   },
   "keywords": [],
   "author": "",
+  "bin": {
+    "ion-migrate": "dist/bin.js"
+  },
   "license": "ISC",
   "dependencies": {
+    "@angular/cli": "^13.0.4",
+    "@ionic/cli": "^6.18.1",
     "dotenv": "^16.0.0",
     "ts-morph": "^13.0.3",
     "ts-node": "^10.6.0"

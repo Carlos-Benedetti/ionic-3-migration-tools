@@ -6,7 +6,7 @@
     "configurations": [
         {
             "type": "pwa-node",
-            "request": "launch",
+            "request": "attach",
             "name": "Launch Program",
             "runtimeArgs": [
                 "-r",
@@ -17,7 +17,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/src/index.ts",
+            "program": "${workspaceFolder}/src/bin.ts",
             "outFiles": [
                 "${workspaceFolder}/dist/**/*.js"
             ]
