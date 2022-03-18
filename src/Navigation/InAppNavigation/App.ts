@@ -1,5 +1,6 @@
+
 import { Project } from "ts-morph";
-import ionic3 from "@ionic3";
+import ionic3 from "../../ionic3";
 import { getMethodNav } from "../getMethodNav";
 import { NavigationResult } from "../NavigationResult";
 

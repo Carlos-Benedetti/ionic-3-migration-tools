@@ -1,5 +1,4 @@
 import 'dotenv/config'
-
 import ion3 from './ionic3';
 import { Navigate, Translate } from './Navigation';
 

@@ -13,6 +13,9 @@ export const IONIC3_PATHS:Paths ={
     },
     get App():string{
         return `${IONIC3_ENV.CWD}/${IONIC3_ENV.DEC_NAV}`
+    },
+    get Component():string{
+        return `${IONIC3_ENV.CWD}/${IONIC3_ENV.DEC_COMP}`
     }
 }
 

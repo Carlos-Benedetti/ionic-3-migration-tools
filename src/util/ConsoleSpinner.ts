@@ -2,7 +2,7 @@ export default class {
   private interval?: number;
 
   constructor(private prefix: string = "", private sufix: string = "") { }
-
+  
   public start() {
     const h = ['|', '/', '-', '\\'];
     let i = 0;
@@ -15,8 +15,8 @@ export default class {
     }, 300);
   }
 
-  public stop() { 
-    if(!this.interval){
+  public stop() {
+    if (!this.interval) {
       console.warn(`loader was inactive`)
     }
     clearInterval(this.interval)

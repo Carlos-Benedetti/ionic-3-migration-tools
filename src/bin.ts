@@ -1,10 +1,18 @@
 #!/usr/bin/env node
 
 import ionic3 from "./ionic3"
-import { Navigate, Translate } from "./Navigation"
 import ListPages from "./util/ListPages"
 import path from 'path'
+import { ListNgComp } from "./ng-comp"
 const [a, b, ...args] = process.argv
+
+const inArgs = (opts: string[]): boolean => {
+
+    const sArgs = args.join(' ');
+    return !!opts.find(opt=>sArgs.includes(opt));
+
+}
+
 const listPages = async () => {
 
     const ionic3Project = await ionic3.Load()
@@ -12,10 +20,17 @@ const listPages = async () => {
 
 }
 
+const listComponents = async () => {
+
+    const ionic3Project = await ionic3.Load()
+    return ListNgComp(ionic3Project)
+
+}
+
 process.env.ION3_CWD = path.resolve(args[0])
 
 switch (true) {
-    case args.includes('create-pages'):
+    case inArgs(['-cp','--create-pages']):
 
         listPages().then(async pages => {
 
@@ -25,6 +40,7 @@ switch (true) {
                 process.stdout.write("\u001b[3J\u001b[2J\u001b[1J"); console.clear();
                 process.stdout.write(updateLog.join('\n'))
             }
+
             log()
             for (const [index, page] of pages.entries()) {
 
@@ -40,7 +56,7 @@ switch (true) {
                 clearInterval(spinnerInt);
                 if (status) {
                     updateLog[index] = `${page.pageName} \x1b[32m ✔️ \x1b[0m`;
-                }else{
+                } else {
                     updateLog[index] = `${page.pageName} ❌ \x1b[0m`;
                 }
                 log()
@@ -48,7 +64,19 @@ switch (true) {
             log()
         })
         break;
+    case inArgs(['-ls', '--list']):
+        listComponents().then()
+        break
 
     default:
+        console.log(`
+        Ion-Migrate
+
+        args:
+
+            -cp --create-pages : Creates new pages on the new application base on the components with "Page" (and without "Modal") in the name
+            -ls --list
+
+        `)
         break;
 }
